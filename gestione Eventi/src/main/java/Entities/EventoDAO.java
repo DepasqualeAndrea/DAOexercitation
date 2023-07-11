@@ -39,8 +39,7 @@ public class EventoDAO {
 			em.remove(trova);
 			t.commit();
 			System.out.println("Evento eliminato con successo");
-		}
-		{
+		} else {
 			System.out.println("Evento non trovato");
 		}
 	}
