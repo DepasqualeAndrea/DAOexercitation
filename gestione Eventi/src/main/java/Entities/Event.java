@@ -24,6 +24,7 @@ public class Event {
 
 	public Event(String titolo, String descrizione, TipoEvento evento, long numeroMassimoPartecipanti) {
 		super();
+		this.evento = evento;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
 		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;

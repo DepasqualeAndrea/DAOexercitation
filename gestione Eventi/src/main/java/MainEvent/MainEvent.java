@@ -1,7 +1,5 @@
 package MainEvent;
 
-import java.util.UUID;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -22,16 +20,27 @@ public class MainEvent {
 
 	public static void creazioneDb() {
 		EntityManager em = emf.createEntityManager();
-		Event evento = new Event("Concerto Ultimo", "Concerto di beneficienza", TipoEvento.PUBBLICO, 1000);
+		Event evento = new Event("Andrea De Pasquale", "Alla ricerca di un ventilatore", TipoEvento.PUBBLICO, 2000);
 		EventoDAO ev = new EventoDAO(em);
+
+		// salva evento
+
 		ev.saveEvent(evento);
+
 		System.out.println(evento);
 
-		Event finded = ev.findEventById(UUID.fromString("8ecca0e9-3b10-4bec-a67b-44f70c9da692"));
-		System.out.println(finded);
-		System.out.println("Evento trovato Correttamente");
+		// evento trovato
 
-		ev.findByIdAndDelete(UUID.fromString("8ecca0e9-3b10-4bec-a67b-44f70c9da692"));
+		// Event finded =
+		// ev.findEventById(UUID.fromString("c0322bb8-e603-46c1-90b8-477be461f6af"));
+		// System.out.println(finded);
+		// System.out.println("Evento trovato Correttamente");
+
+		// trovatoed eliminato
+
+		// ev.findByIdAndDelete(UUID.fromString("785ff35d-91c0-44fb-ac56-bd0873470627"));
+
+		// chiusura
 
 		em.close();
 		emf.close();
