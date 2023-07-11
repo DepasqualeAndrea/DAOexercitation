@@ -48,8 +48,12 @@ public class EventoDAO {
 
 	public void refresh(UUID id) {
 		Event trova = em.find(Event.class, id);
-		em.refresh(trova);
 
+		trova.setDescrizione("ariciao");
+		System.out.println(trova);
+
+		em.refresh(trova);
+		System.out.println(trova);
 	}
 
 }
