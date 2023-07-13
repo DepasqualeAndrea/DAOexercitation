@@ -1,9 +1,11 @@
-package Entities;
+package DAO;
 
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+
+import Entities.Event;
 
 public class EventoDAO {
 	private final EntityManager em;
@@ -42,18 +44,6 @@ public class EventoDAO {
 		} else {
 			System.out.println("Evento non trovato");
 		}
-	}
-
-//metodo refresh
-
-	public void refresh(UUID id) {
-		Event trova = em.find(Event.class, id);
-
-		trova.setDescrizione("ariciao");
-		System.out.println(trova);
-
-		em.refresh(trova);
-		System.out.println(trova);
 	}
 
 }

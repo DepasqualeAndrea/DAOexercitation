@@ -1,5 +1,6 @@
 package Entities;
 
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -7,10 +8,21 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import Enum.TipoEvento;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "eventi")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Event {
 	@Id // genera un id indipendente
 	@GeneratedValue // generea un id univoco per ogni evento che abbiamo nel main
@@ -21,9 +33,16 @@ public class Event {
 	private TipoEvento evento;
 	private long numeroMassimoPartecipanti;
 
-	public Event() {
+	// fk per la parteipazione
+	@OneToMany(mappedBy = "event")
+	// @OrderBy("nome DESC")
+	private Set<Partecipazione> partecipazione;
 
-	}
+	// da evento a location
+
+	@ManyToOne
+	@JoinColumn(name = "location_id", referencedColumnName = "id")
+	private Location location;
 
 	public Event(String titolo, String descrizione, TipoEvento evento, long numeroMassimoPartecipanti) {
 		super();
@@ -33,44 +52,10 @@ public class Event {
 		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
 	}
 
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
-	}
-
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
-	public TipoEvento getEvento() {
-		return evento;
-	}
-
-	public void setEvento(TipoEvento evento) {
-		this.evento = evento;
-	}
-
-	public long getNumeroMassimoPartecipanti() {
-		return numeroMassimoPartecipanti;
-	}
-
-	public void setNumeroMassimoPartecipanti(long numeroMassimoPartecipanti) {
-		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-	}
-
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", titolo=" + titolo + ", descrizione=" + descrizione + ", evento=" + evento
-				+ ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti + ", getTitolo()=" + getTitolo()
-				+ ", getDescrizione()=" + getDescrizione() + ", getEvento()=" + getEvento()
-				+ ", getNumeroMassimoPartecipanti()=" + getNumeroMassimoPartecipanti() + "]";
+				+ ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti + "]";
 	}
 
 }
